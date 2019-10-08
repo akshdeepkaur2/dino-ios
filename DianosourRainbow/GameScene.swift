@@ -12,9 +12,6 @@ import GameplayKit
 class GameScene: SKScene {
     
     var player:SKSpriteNode!
-    
-    var rainbow:SKSpriteNode!
-    var poop:SKSpriteNode!
     var lives = 3
     var  livesLabel:SKLabelNode!
     var score = 0
@@ -50,6 +47,25 @@ class GameScene: SKScene {
         addChild(candy)
         self.candy.append(candy)
     }
+    var rainbow:[SKSpriteNode] = []////////////////////////////////////////////////////////////////////////
+    func spawnRainbow(){
+        let rainbow = SKSpriteNode(imageNamed: "rainbow64")
+        let randomXPos = CGFloat.random(in:0 ... size.width)
+        let randomYPos = CGFloat.random(in:0 ... size.height)
+        rainbow.position = CGPoint(x: randomXPos, y: randomYPos)
+        addChild(rainbow)
+        self.rainbow.append(rainbow)
+    }
+    var poop:[SKSpriteNode] = []////////////////////////////////////////////////////////////////////////
+    func spawnPoop(){
+        let poop = SKSpriteNode(imageNamed: "poop64")
+        let randomXPos = CGFloat.random(in:0 ... size.width)
+        let randomYPos = CGFloat.random(in:0 ... size.height)
+        poop.position = CGPoint(x: randomXPos, y: randomYPos)
+        addChild(poop)
+        self.poop.append(poop)
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // get the first "tap" on the screen
         let locationtouched = touches.first
@@ -88,10 +104,24 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         
         numLoops = numLoops + 1
-        if(numLoops % 120 == 0){/////////////////////////////////////////////////////////////////////////////
+        if(numLoops % 360 == 0){/////////////////////////////////////////////////////////////////////////////
             
             
             self.spawnCandy()
+            
+            
+        }
+        if(numLoops % 1200 == 0){/////////////////////////////////////////////////////////////////////////////
+            
+            
+            self.spawnRainbow()
+            
+            
+        }
+        if(numLoops % 240 == 0){/////////////////////////////////////////////////////////////////////////////
+            
+            
+            self.spawnPoop()
             
             
         }
