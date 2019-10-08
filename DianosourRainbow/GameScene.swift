@@ -154,5 +154,51 @@ class GameScene: SKScene {
         if(MouseY != 0.0 && MouseX != 0.0){
             self.movePlayer(mouseXPosition: self.MouseX, mouseYPosition: self.MouseY)
         }
+        for (index, candy) in self.candy.enumerated(){
+            if (self.player.frame.intersects(candy.frame) == true){
+                self.score = self.score + 1
+                self.scoreLabel.text = "Score: \(self.score)"
+                // remove candy from screen
+                candy.removeFromParent()
+                // remove candy from array
+                self.candy.remove(at:index)
+                //let winScene = WinScene(size: self.size)
+               // let transitionEffect = SKTransition.flipVertical(withDuration: 2)
+                //self.view?.presentScene(winScene, transition:transitionEffect)
+            }
+        }
+        for (index, rainbow) in self.rainbow.enumerated(){
+            if (self.player.frame.intersects(rainbow.frame) == true){
+                self.score = self.score + 2
+                self.scoreLabel.text = "Score: \(self.score)"
+                // remove cat from screen
+                rainbow.removeFromParent()
+                // remove cat from array
+                self.rainbow.remove(at:index)
+                //let winScene = WinScene(size: self.size)
+               // let transitionEffect = SKTransition.flipVertical(withDuration: 2)
+                //self.view?.presentScene(winScene, transition:transitionEffect)
+            }
+        }
+        if(score >= 5){
+            let winScene = WinScene(size: self.size)
+            let transitionEffect = SKTransition.flipVertical(withDuration: 2)
+            self.view?.presentScene(winScene, transition:transitionEffect)
+        }
+        for (index, poop) in self.poop.enumerated(){
+            if (self.player.frame.intersects(poop.frame) == true){
+                self.lives = self.lives - 1
+                self.livesLabel.text = "Lives: \(self.lives)"
+                // remove cat from screen
+                poop.removeFromParent()
+                // remove cat from array
+                self.poop.remove(at:index)
+                if(lives <= 0){
+                let loseScene = LoseScene(size: self.size)
+                let transitionEffect = SKTransition.flipVertical(withDuration: 2)
+                self.view?.presentScene(loseScene, transition:transitionEffect)
+            }
+        }
+}
 }
 }

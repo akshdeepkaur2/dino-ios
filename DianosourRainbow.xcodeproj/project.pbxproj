@@ -15,6 +15,8 @@
 		19CBDD1A2346FE970058FD30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19CBDD182346FE970058FD30 /* Main.storyboard */; };
 		19CBDD1C2346FE990058FD30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19CBDD1B2346FE990058FD30 /* Assets.xcassets */; };
 		19CBDD1F2346FE990058FD30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19CBDD1D2346FE990058FD30 /* LaunchScreen.storyboard */; };
+		19CBDD6F234C60450058FD30 /* LoseScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CBDD6E234C60450058FD30 /* LoseScene.swift */; };
+		19CBDD71234C66160058FD30 /* WinScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CBDD70234C66160058FD30 /* WinScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		19CBDD1B2346FE990058FD30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		19CBDD1E2346FE990058FD30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		19CBDD202346FE990058FD30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		19CBDD6E234C60450058FD30 /* LoseScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoseScene.swift; sourceTree = "<group>"; };
+		19CBDD70234C66160058FD30 /* WinScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,12 +67,14 @@
 				19CBDD0E2346FE970058FD30 /* AppDelegate.swift */,
 				19CBDD102346FE970058FD30 /* GameScene.sks */,
 				19CBDD122346FE970058FD30 /* Actions.sks */,
+				19CBDD6E234C60450058FD30 /* LoseScene.swift */,
 				19CBDD142346FE970058FD30 /* GameScene.swift */,
 				19CBDD162346FE970058FD30 /* GameViewController.swift */,
 				19CBDD182346FE970058FD30 /* Main.storyboard */,
 				19CBDD1B2346FE990058FD30 /* Assets.xcassets */,
 				19CBDD1D2346FE990058FD30 /* LaunchScreen.storyboard */,
 				19CBDD202346FE990058FD30 /* Info.plist */,
+				19CBDD70234C66160058FD30 /* WinScene.swift */,
 			);
 			path = DianosourRainbow;
 			sourceTree = "<group>";
@@ -147,8 +153,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				19CBDD152346FE970058FD30 /* GameScene.swift in Sources */,
+				19CBDD71234C66160058FD30 /* WinScene.swift in Sources */,
 				19CBDD172346FE970058FD30 /* GameViewController.swift in Sources */,
 				19CBDD0F2346FE970058FD30 /* AppDelegate.swift in Sources */,
+				19CBDD6F234C60450058FD30 /* LoseScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
