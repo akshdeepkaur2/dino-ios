@@ -41,6 +41,15 @@ class GameScene: SKScene {
         self.scoreLabel.fontColor = UIColor.white
         addChild(self.scoreLabel)
     }
+    var candy:[SKSpriteNode] = []////////////////////////////////////////////////////////////////////////
+    func spawnCandy(){
+        let candy = SKSpriteNode(imageNamed: "candy64")
+        let randomXPos = CGFloat.random(in:0 ... size.width)
+        let randomYPos = CGFloat.random(in:0 ... size.height)
+        candy.position = CGPoint(x: randomXPos, y: randomYPos)
+        addChild(candy)
+        self.candy.append(candy)
+    }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // get the first "tap" on the screen
         let locationtouched = touches.first
@@ -62,17 +71,6 @@ class GameScene: SKScene {
         
         print("User tapped screen at: \(touchLocation.x.rounded()),\(touchLocation.y.rounded())")
     }
-    var candy:[SKSpriteNode] = []////////////////////
-    func spawnCandy(){
-        let candy = SKSpriteNode(imageNamed: "candy64")
-        let randomXPos = CGFloat.random(in:0 ... size.width)
-        let randomYPos = CGFloat.random(in:0 ... size.height)
-        candy.position = CGPoint(x: randomXPos, y: randomYPos)
-        addChild(candy)
-        self.candy.append(candy)
-    }
-    
-    // just to move player according to mouse click
     func movePlayer(mouseXPosition:CGFloat,mouseYPosition:CGFloat)  {
         //1. calculate didtance
         let a = (self.MouseX - self.player.position.x)
@@ -80,13 +78,11 @@ class GameScene: SKScene {
         let distance = sqrt((a * a) + (b * b))
         
         //2. movement per rate
-        
+        let xn = (a / distance)
         let yn = (b / distance)
-       let xn = (b / distance)
         //calculate the movement
-        
-        self.player.position.y = self.player.position.y + (yn * 40)
         self.player.position.x = self.player.position.x + (xn * 40)
+        self.player.position.y = self.player.position.y + (yn * 40)
     }
     var numLoops = 0
     override func update(_ currentTime: TimeInterval) {
@@ -98,40 +94,35 @@ class GameScene: SKScene {
             self.spawnCandy()
             
             
+        }
+        let screenRightSide = size.width
         
-    
-    // get current y position of player
-    
-            let screenRightSide = size.width
-            
-            // get current x-position of zombie
-            var playerX = self.player.position.x
-            
-            if (self.playerMovingLeft == true) {
-                playerX = self.player.position.x - 10;
-                
-                if (playerX <= 0) {
-                    // bounce off left wall
-                    self.playerMovingRight = false;
-                    self.playerMovingLeft = false;
-                    
-                }
-            }
-            
-            if (self.playerMovingRight == true) {
-                playerX = self.player.position.x + 10;
-                
-                if (playerX >= screenRightSide) {
-                    // bounce off right wall
-                    self.playerMovingLeft = false
-                    self.playerMovingRight = false
-                }
-            }
+        // get current x-position of zombie
+        var playerX = self.player.position.x
         
-    if(MouseY != 0.0 && MouseX != 0.0){
-    self.movePlayer(mouseXPosition: self.MouseX, mouseYPosition: self.MouseY)
+        if (self.playerMovingLeft == true) {
+            playerX = self.player.position.x - 10;
+            
+            if (playerX <= 0) {
+                // bounce off left wall
+                self.playerMovingRight = true;
+                self.playerMovingLeft = false;
+                
+            }
         }
         
-    }
+        if (self.playerMovingRight == true) {
+        playerX = self.player.position.x + 10;
+            
+            if (playerX >= screenRightSide) {
+                // bounce off right wall
+                self.playerMovingLeft = true
+                self.playerMovingRight = false
+            }
+        }
+        
+        if(MouseY != 0.0 && MouseX != 0.0){
+            self.movePlayer(mouseXPosition: self.MouseX, mouseYPosition: self.MouseY)
+        }
 }
 }
